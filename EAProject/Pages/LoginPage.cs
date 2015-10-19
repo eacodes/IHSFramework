@@ -37,6 +37,8 @@ namespace EAProject.Pages
         [FindsBy(How = How.Name, Using = "Login")]
         public IWebElement btnLogin;
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='cssmenu']/ul/li[1]/a")]
+        public IWebElement lnkLogout;
 
 
         /// <summary>
@@ -55,10 +57,11 @@ namespace EAProject.Pages
             return new UserFormPage();
         }
 
-        public void ForgetPassword(string emailAddress)
+        public void Logout()
         {
-
+            lnkLogout.Click();
         }
+
 
 
         public void SocialLogin(string socialType)

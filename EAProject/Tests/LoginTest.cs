@@ -16,14 +16,26 @@ namespace EAProject.Tests
     public class LoginTest : BaseFixture
     {
 
-
-        public void CleanUserData(string userName)
+        public void Test_Login()
         {
-            PropertyFactory.ApplicationConnection.ExecuteQuery
-                ("Delete from tblUser where UserName={0}" + userName);
+            ExcelReader.PopulateInCollection(@"C:\Users\karthik\Documents\visual studio 2015\Projects\IHSFramework\IHSFramework\Resources\Login.xlsx");
+
+            //Version 2
+            LoginPage loginPage = new LoginPage();
+
+            //Iterate through all the test cases
+            for (int row = 1; row <= ExcelReader.RowCount; row++)
+            {
+                //Programatically you are saying that, the following operations
+                // are for userForm page page
+                loginPage.Login(ExcelReader.ReadData(row, "UserName"),
+                    ExcelReader.ReadData(row, "Password"));
+
+                //Logout from the portal
+                loginPage.Logout();
+            }
+
         }
-
-
 
         [Test]
         public void Test_UserForm_DataEntry()

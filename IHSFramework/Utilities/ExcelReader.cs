@@ -12,6 +12,12 @@ namespace IHSFramework.Utilities
     {
         private static List<Datacollection> dataCol = new List<Datacollection>();
 
+
+        public static int RowCount
+        {
+            get { return dataCol.Select(x => x.rowNumber).Distinct().Count(); }
+        }
+
         public static void PopulateInCollection(string fileName)
         {
             DataTable table = ExcelToDataTable(fileName);

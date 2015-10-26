@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Firefox;
 using System.Configuration;
+using IHSFramework.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace IHSFramework.Fixtures
 {
@@ -17,6 +19,14 @@ namespace IHSFramework.Fixtures
         [SetUp]
         public void CodeSetup()
         {
+
+            //Connecting to Reporting database
+            PropertyFactory.ReportingConn = PropertyFactory.ReportingConn.
+                DBConnect(ConfigurationManager.ConnectionStrings["ReportingDb"].ToString());
+
+            //Query the database
+            PropertyFactory.ReportingConn.ExecuteQuery("select * from tblTestCycle");
+
             DriverContext = new FirefoxDriver();
 
             //Contains the URL

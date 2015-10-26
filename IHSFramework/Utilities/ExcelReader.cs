@@ -18,6 +18,7 @@ namespace IHSFramework.Utilities
             get { return dataCol.Select(x => x.rowNumber).Distinct().Count(); }
         }
 
+
         public static void PopulateInCollection(string fileName)
         {
             DataTable table = ExcelToDataTable(fileName);
@@ -25,6 +26,8 @@ namespace IHSFramework.Utilities
             //Iterate through the rows and columns of the Table
             for (int row = 1; row <= table.Rows.Count; row++)
             {
+
+                //Iterate through all the columns of the table
                 for (int col = 0; col < table.Columns.Count; col++)
                 {
                     Datacollection dtTable = new Datacollection()

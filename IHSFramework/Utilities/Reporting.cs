@@ -20,25 +20,23 @@ namespace IHSFramework.Utilities
         /// </summary>
         public static void CreateTestCycle()
         {
-            if (PropertyFactory.IsReporting == "Y")
-                try
-                {
-                    Hashtable table = new Hashtable();
-                    table.Add("AUT", "Execute Automation App");
-                    table.Add("ExecutedBy", "Karthik KK");
-                    table.Add("RequestedBy", "Karthik KK");
-                    table.Add("BuildNo", "1.0.0");
-                    table.Add("ApplicationVersion", "1.0");
-                    table.Add("MachineName", Environment.MachineName);
-                    table.Add("TestType", 1);
+            try
+            {
+                Hashtable table = new Hashtable();
+                table.Add("AUT", "IHS Application");
+                table.Add("ExecutedBy", "Karthik KK");
+                table.Add("RequestedBy", "Karthik KK");
+                table.Add("BuildNo", "1.0.0");
+                table.Add("ApplicationVersion", "1.0");
+                table.Add("MachineName", Environment.MachineName);
 
-                    PropertyFactory.ReportingConn.ExecuteProcWithParamsDT("sp_CreateTestCycleID", table);
+                PropertyFactory.ReportingConn.ExecuteProcWithParamsDT("sp_CreateTestCycleID", table);
 
-                }
-                catch (Exception e)
-                {
-                    Log.Write(e.Message);
-                }
+            }
+            catch (Exception e)
+            {
+                Log.Write(e.Message);
+            }
         }
 
         /// <summary>
@@ -46,23 +44,21 @@ namespace IHSFramework.Utilities
         /// </summary>
         public static void WriteTestResults(string TestCaseID, string TestCaseDesc, string scenarioName, string Actual, string Expected, string Result)
         {
-
-            if (PropertyFactory.IsReporting == "Y")
-                try
-                {
-                    Hashtable table = new Hashtable();
-                    table.Add("TestCaseID", TestCaseID);
-                    table.Add("TestCaseDesc", TestCaseDesc);
-                    table.Add("ModuleName", scenarioName);
-                    table.Add("Actual", Actual);
-                    table.Add("Expected", Expected);
-                    table.Add("Result", Result);
-                    PropertyFactory.ReportingConn.ExecuteProcWithParamsDT("sp_InsertResult", table);
-                }
-                catch (Exception e)
-                {
-                    Log.Write(e.Message);
-                }
+            try
+            {
+                Hashtable table = new Hashtable();
+                table.Add("TestCaseID", TestCaseID);
+                table.Add("TestCaseDesc", TestCaseDesc);
+                table.Add("ModuleName", scenarioName);
+                table.Add("Actual", Actual);
+                table.Add("Expected", Expected);
+                table.Add("Result", Result);
+                PropertyFactory.ReportingConn.ExecuteProcWithParamsDT("sp_InsertResult", table);
+            }
+            catch (Exception e)
+            {
+                Log.Write(e.Message);
+            }
         }
 
 

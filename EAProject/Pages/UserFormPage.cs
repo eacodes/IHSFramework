@@ -65,6 +65,15 @@ namespace EAProject.Pages
         }
 
 
+        public bool IsUserForm()
+        {
+            if (txtFirstName.Displayed)
+                return true;
+            else
+                return false;
+        }
+
+
 
 
         public void FillUserFrom(string Initial, string FristName, string MiddleName, string Title)

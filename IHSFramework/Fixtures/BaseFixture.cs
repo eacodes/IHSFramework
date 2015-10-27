@@ -24,8 +24,10 @@ namespace IHSFramework.Fixtures
             PropertyFactory.ReportingConn = PropertyFactory.ReportingConn.
                 DBConnect(ConfigurationManager.ConnectionStrings["ReportingDb"].ToString());
 
-            //Query the database
-            PropertyFactory.ReportingConn.ExecuteQuery("select * from tblTestCycle");
+
+            //Test Cycle Creation
+            Reporting.CreateTestCycle();
+
 
             DriverContext = new FirefoxDriver();
 
@@ -40,6 +42,9 @@ namespace IHSFramework.Fixtures
         public void CodeTearDown()
         {
             DriverContext.Close();
+
+            PropertyFactory.ReportingConn.DBClose();
+
         }
 
     }

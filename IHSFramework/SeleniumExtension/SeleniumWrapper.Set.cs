@@ -15,6 +15,8 @@ namespace IHSFramework.SeleniumExtension
 
     public static partial class SeleniumWrapper
     {
+
+
         
         public static void EnterText(this IWebElement element, string value)
         {
@@ -52,7 +54,14 @@ namespace IHSFramework.SeleniumExtension
         }
 
 
-
+        public static void ImplicitWait(IWebDriver driver)
+        {
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
+        }
+        public static void ExplicitWait(IWebDriver driver, By locator)
+        {
+             new WebDriverWait(driver, TimeSpan.FromSeconds(60)).Until(ExpectedConditions.ElementExists((locator)));
+        }
 
 
 

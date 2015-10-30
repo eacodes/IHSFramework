@@ -63,6 +63,24 @@ namespace IHSFramework.SeleniumExtension
              new WebDriverWait(driver, TimeSpan.FromSeconds(60)).Until(ExpectedConditions.ElementExists((locator)));
         }
 
+        public static bool Exist(this IWebElement element)
+        {
+          try
+         {   
+           Console.WriteLine("element is present.");
+           return true;
+        }
+        catch (NoSuchElementException)
+        {
+           Console.WriteLine("element is not present.");
+           return false;
+        }
+        }
+
+
+
+
+
 
 
 
